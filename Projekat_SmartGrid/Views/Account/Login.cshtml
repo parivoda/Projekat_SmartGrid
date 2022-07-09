@@ -1,0 +1,48 @@
+﻿
+@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "Login";
+    User currentUser = Session["USER"] as User;
+}
+@if (currentUser != null)
+{
+    <div>
+        <h1>You are already logged in!</h1>
+    </div>
+}
+else
+{
+    <div>
+        <h1>Login</h1>
+    </div>
+
+    <div>
+        <form action="~/Account/Login" method="post">
+            <table class="center">
+                <tr>
+                    <td>Username</td>
+                    <td><input class="inputRegister" type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input class="inputRegister" type="password" name="password"></td>
+                </tr>
+                @if (ViewBag.error != null)
+                {
+                    <tr>
+                        <td colspan="2" class="error_message">@ViewBag.error</td>
+                    </tr>
+                }
+                @if (ViewBag.emptyError != null)
+                {
+                    <tr>
+                        <td colspan="2" class="error_message">@ViewBag.emptyError</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2"><input class="buttonTable" style="width:100%;" type="submit" value="Log In" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+}

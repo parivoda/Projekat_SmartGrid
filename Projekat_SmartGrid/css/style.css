@@ -1,0 +1,125 @@
+﻿body {
+    background-color: #181733;
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link, a:visited {
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+a:hover, a:active {
+    background-color: transparent;
+    color: white;
+}
+
+.topnav {
+    overflow: hidden;
+    /*background-color: #cf1156;*/
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-block;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.topnav a:after {
+    display: block;
+    content: '';
+    border-bottom: solid 2px white;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+.topnav a:hover:after {
+    cursor: pointer;
+    /*transition: all 200ms;*/
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    transform: scaleX(1);
+}
+
+table {
+    width: 60%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    display: table-row;
+    background: #233d69;
+    width: 100%;
+}
+
+td {
+    padding: 6px 12px;
+    display: table-cell;
+    text-align: center;
+}
+
+th {
+    font-weight: 900;
+    color: white;
+    background: #cf1156;
+}
+
+fieldset {
+    border: 1px solid #ad4139;
+    width: 350px;
+    margin: auto;
+}
+
+.inputRegister {
+    width: 100%;
+}
+
+h1, h2, h3, h4 {
+    text-shadow: 2px 2px #ad4139;
+    text-align: center;
+}
+
+.error_message {
+    color: red;
+}
+
+.buttonTable:hover {
+    box-shadow: white 0 0 0 3px, transparent 0 0 0 0;
+}
+
+.buttonTable {
+    text-align: center;
+    background-color: rgba(128, 174, 255, 0.5);
+    border-radius: 8px;
+    border-width: 0;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+}
