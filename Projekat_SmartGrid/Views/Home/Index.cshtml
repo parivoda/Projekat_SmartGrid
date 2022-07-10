@@ -1,4 +1,21 @@
-﻿@{
+﻿@model IEnumerable<Projekat_SmartGrid.Models.User>
+@{
     ViewBag.Title = "Home Page";
 }
 <h1>WELCOME !</h1>
+
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>@item.Username</td>
+            <td>@item.Email</td>
+            <td>@item.UserType</td>
+        }
+    </tr>
+</table>
