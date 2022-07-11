@@ -88,7 +88,7 @@ namespace Projekat_SmartGrid.Controllers
                         con.Close();
                     }
                 }
-                Data.userList.Add(username, user);
+                Data.userList.Add(email, user);
                 return RedirectToAction("Login");
             }
             else
@@ -97,48 +97,57 @@ namespace Projekat_SmartGrid.Controllers
             }
         }
 
-        //[HttpPost]
-        //public ActionResult Login(string username, string password)
-        //{
-        //    if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-        //    {
-        //        ViewBag.emptyError = "You must fill all the fields!";
-        //        return View();
-        //    }
+        [HttpPost]
+        public ActionResult Login(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                ViewBag.emptyError = "You must fill all the fields!";
+                return View();
+            }
+            if (Data.userList[email].UserType.Equals(UserType.DELIVERER))
+            {
+                if (Data.userList[email].Blocked.Equals(false))
+                {
+                    if (Data.userList.ContainsKey(email) && Data.userList[email].Password.Equals(password))
+                    {
+                        Session["USER"] = Data.userList[email];
+                        return RedirectToAction("Index", "Home");
 
-        //    if (Data.users.ContainsKey(username) && Data.users[username].Password.Equals(password))
-        //    {
-        //        if (Data.users[username].Role == Role.COACH)
-        //        {
-        //            foreach (Coach c in Data.coaches)
-        //            {
-        //                if (Data.users[username].Username == c.Username)
-        //                {
-        //                    if (c.Blocked == false)
-        //                    {
-        //                        Session["USER"] = Data.users[username];
-        //                        return RedirectToAction("Index", "Home");
-        //                    }
-        //                    else
-        //                    {
-        //                        ViewBag.error = "Account blocked!";
-        //                        return View();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Session["USER"] = Data.users[username];
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.error = "Wrong login info!";
-        //        return View();
-        //    }
-        //}
+                    }
+                    else
+                    {
+                        ViewBag.error = "Wrong login info!";
+                        return View();
+                    }
+                }
+                else
+                {
+                    ViewBag.error = "You must wait for Administrator to approve your register request";
+                    return View();
+                }
+                
+            }
+            else
+            {
+                if (Data.userList.ContainsKey(email) && Data.userList[email].Password.Equals(password))
+                {
+                    Session["USER"] = Data.userList[email];
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else
+                {
+                    ViewBag.error = "Wrong login info!";
+                    return View();
+                }
+            }
+            
+        }
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
     }
 }

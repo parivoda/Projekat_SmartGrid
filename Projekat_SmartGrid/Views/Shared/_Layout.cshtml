@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Projekat_SmartGrid.Models;
+@{
+    User currentUser = Session["USER"] as User;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,6 +15,30 @@
         <a href="~/Home/Index">Home</a>&nbsp;
         <a href="~/Account/Login">LogIn</a>&nbsp;
         <a href="~/Account/Register">Register</a>&nbsp;
+        @{
+            if (currentUser != null)
+            {
+                <a href="~/Account/LogOut" style="float:right;">LogOut</a>
+                <a href="~/Account/Profile" style="float:right;">@currentUser.Username (Profile)</a>
+                if (currentUser.UserType == UserType.ADMIN)
+                {
+                    <a href="~/Admin/Verify" style="float:right;">Verify</a>
+                    <a href="~/Admin/AllOrders" style="float:right;">All Orders</a>
+                    <a href="~/Admin/AddProducts" style="float:right;">Add Products</a>
+                }
+                if (currentUser.UserType == UserType.DELIVERER)
+                {
+                    <a href="~/Deliverer/NewOrders" style="float:right;">New Orders</a>
+                    <a href="~/Deliverer/MyOrders" style="float:right;">My Orders</a>
+                    <a href="~/Deliverer/CurrentOrder" style="float:right;">Current Order</a>
+                }
+                if (currentUser.UserType == UserType.USER)
+                {
+                    <a href="~/User/CurrentOrder" style="float:right;">New/Current Order</a>
+                    <a href="~/User/PastOrders" style="float:right;">Past Orders</a>
+                }
+            }
+        }
     </div>
     @RenderBody()
 </body>

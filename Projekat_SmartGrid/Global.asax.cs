@@ -46,10 +46,10 @@ namespace Projekat_SmartGrid
                     users.Lastname = rdr["Lastname"].ToString();
                     users.DateOfBirth = rdr["DateOfBirth"].ToString();
                     users.Address = rdr["Address"].ToString();
-                    users.UserType = UserType.USER;
+                    users.UserType = (UserType)Enum.Parse(typeof(UserType), rdr["UserType"].ToString());
                     users.Image = rdr["Image"].ToString();
                     users.Blocked = Convert.ToBoolean(rdr["Blocked"]);
-                    Data.userList.Add(users.Username,users);
+                    Data.userList.Add(users.Email,users);
                 }
             }
         }
