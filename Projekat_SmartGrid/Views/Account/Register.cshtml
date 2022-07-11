@@ -32,6 +32,10 @@ else
                     <td><input class="inputRegister" type="password" name="password"></td>
                 </tr>
                 <tr>
+                    <td>Confirm Password</td>
+                    <td><input class="inputRegister" type="password" name="password2"></td>
+                </tr>
+                <tr>
                     <td>Name</td>
                     <td><input class="inputRegister" type="text" name="name"></td>
                 </tr>
@@ -46,6 +50,15 @@ else
                 <tr>
                     <td>Address</td>
                     <td><input class="inputRegister" type="text" name="address"></td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>
+                        <select style="width:100%;" name="userType">
+                            <option value="USER" selected>USER</option>
+                            <option value="DELIVERER">DELIVERER</option>
+                        </select>
+                    </td>
                 </tr>
                 @if (ViewBag.emptyError != null)
                 {
@@ -63,6 +76,12 @@ else
                 {
                     <tr>
                         <td colspan="2" class="error_message">@ViewBag.emailError</td>
+                    </tr>
+                }
+                @if (ViewBag.passwordError != null)
+                {
+                    <tr>
+                        <td colspan="2" class="error_message">@ViewBag.passwordError</td>
                     </tr>
                 }
                 <tr>

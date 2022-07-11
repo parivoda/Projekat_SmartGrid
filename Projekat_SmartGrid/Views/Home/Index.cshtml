@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Projekat_SmartGrid.Models.User>
+﻿@using Projekat_SmartGrid.Models;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,12 +10,12 @@
         <th>Email</th>
         <th>Status</th>
     </tr>
-    <tr>
-        @foreach (var item in Model)
-        {
+    @foreach (var item in Data.userList.Values)
+    {
+        <tr>
             <td>@item.Username</td>
             <td>@item.Email</td>
             <td>@item.UserType</td>
-        }
-    </tr>
-</table>
+        </tr>
+    }
+    </table>
