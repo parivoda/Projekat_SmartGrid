@@ -96,7 +96,6 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
-
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
@@ -148,6 +147,68 @@ namespace Projekat_SmartGrid.Controllers
         {
             Session.Clear();
             return RedirectToAction("Login");
+        }
+        public ActionResult ProfileView()
+        {
+            if (Session["USER"] == null)
+                return RedirectToAction("Index", "Home");
+            else
+                return View();
+        }
+        public ActionResult EditProfile(string username, string name, string lastname,string password, string email, string address, string dateOfBirth,string userType)
+        {
+            User thisUser = (User)Session["User"];
+
+            Data.userList.Remove(thisUser.Email);
+
+            bool valid = true;
+            foreach (var item in Data.userList.Values)
+            {
+                if (item.Email.ToLower().Equals(email.ToLower()))
+                {
+                    ViewBag.emailError = "Email already in use!";
+                    valid = false;
+                }
+            }
+            foreach (var item in Data.userList.Values)
+            {
+                if (item.Username.ToLower().Equals(username.ToLower()))
+                {
+                    ViewBag.usernameError = "Username already in use!";
+                    valid = false;
+                }
+            }
+            if (valid)
+            {
+
+                User user = new User(username,email,password,name,lastname,dateOfBirth,address, (UserType)Enum.Parse(typeof(UserType), userType), false);
+
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjekatSmartGridConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateUser", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Password", password);
+                        cmd.Parameters.AddWithValue("@Name", name);
+                        cmd.Parameters.AddWithValue("@Lastname", lastname);
+                        cmd.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                        cmd.Parameters.AddWithValue("@Address", address);
+                        cmd.Parameters.AddWithValue("@UserType", userType);
+                        cmd.Parameters.AddWithValue("@Blocked", "False");
+                        cmd.Parameters.AddWithValue("@status", "update");
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+                Data.userList.Add(user.Email, user);
+                
+                Session["USER"] = Data.userList[thisUser.Email];
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

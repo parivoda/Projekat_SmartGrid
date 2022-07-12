@@ -1,0 +1,66 @@
+﻿@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "Profile";
+    User currentUser = Session["USER"] as User;
+}
+
+<div>
+    <h2>@currentUser.Username</h2>
+    <form action="~/Account/EditProfile" method="post">
+        <input type="hidden" name="userType" value="@currentUser.UserType" />
+        <input type="hidden" name="email" value="@currentUser.Email">
+        <table class="center">
+            <tr>
+                <td>Username</td>
+                <td><input class="inputRegister" type="text" name="username" value="@currentUser.Username"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@currentUser.Email</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input class="inputRegister" type="text" name="password" value="@currentUser.Password"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input class="inputRegister" type="text" name="name" value="@currentUser.Name"></td>
+            </tr>
+            <tr>
+                <td>Lastname</td>
+                <td><input class="inputRegister" type="text" name="lastname" value="@currentUser.Lastname"></td>
+            </tr>
+            <tr>
+                <td>Date of birth</td>
+                <td><input class="inputRegister" style="width:97%;" type="date" name="dateOfBirth" value="@currentUser.DateOfBirth"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input class="inputRegister" type="text" name="address" value="@currentUser.Address"></td>
+            </tr>
+            <tr>
+                <td>User Type</td>
+                <td>@currentUser.UserType</td>
+            </tr>
+            @if (ViewBag.usernameError != null)
+            {
+                <tr>
+                    <td colspan="2">@ViewBag.usernameError</td>
+                </tr>
+            }
+            @if (ViewBag.emailError != null)
+            {
+                <tr>
+                    <td colspan="2">@ViewBag.emailError</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <input class="buttonTable" type="submit" value="Edit Profile" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+

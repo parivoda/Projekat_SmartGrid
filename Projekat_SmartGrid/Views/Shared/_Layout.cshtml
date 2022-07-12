@@ -19,7 +19,7 @@
             if (currentUser != null)
             {
                 <a href="~/Account/LogOut" style="float:right;">LogOut</a>
-                <a href="~/Account/Profile" style="float:right;">@currentUser.Username (Profile)</a>
+                <a href="~/Account/ProfileView" style="float:right;">@currentUser.Username (Profile)</a>
                 if (currentUser.UserType == UserType.ADMIN)
                 {
                     <a href="~/Admin/Verify" style="float:right;">Verify</a>
