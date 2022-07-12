@@ -1,0 +1,44 @@
+﻿@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "AddProducts";
+    User currentUser = Session["USER"] as User;
+}
+
+<div>
+    <h1>Add Product</h1>
+</div>
+
+<div>
+    <form action="~/Admin/AddProductAction" method="post">
+        @{
+            int id = Data.productList.Count + 1;
+            <input type="hidden" name="id" value="@id" />
+        }
+        <table class="center">
+            <tr>
+                <td>Name</td>
+                <td><input class="inputRegister" type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input class="inputRegister" type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td>Ingredients</td>
+                <td><input class="inputRegister" type="text" name="ingredients"></td>
+            </tr>
+
+            @if (ViewBag.emptyError != null)
+            {
+                <tr>
+                    <td colspan="2" class="error_message">@ViewBag.emptyError</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <input class="buttonTable" style="width:100%;" type="submit" value="Add Product" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -21,11 +21,12 @@ namespace Projekat_SmartGrid
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             LoadUsers();
+            LoadOrders();
+            LoadProducts();
         }
 
         public void LoadUsers()
         {
-            List<User> userList = new List<User>();
             string cs = ConfigurationManager.ConnectionStrings["ProjekatSmartGridConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -50,6 +51,33 @@ namespace Projekat_SmartGrid
                     users.Image = rdr["Image"].ToString();
                     users.Blocked = Convert.ToBoolean(rdr["Blocked"]);
                     Data.userList.Add(users.Email,users);
+                }
+            }
+        }
+        public void LoadOrders()
+        {
+
+        }
+
+        public void LoadProducts()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["ProjekatSmartGridConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Products", con);
+                cmd.CommandType = System.Data.CommandType.Text;
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var products = new Product();
+
+                    products.Id = Convert.ToInt32(rdr["Id"]);
+                    products.Name = rdr["Name"].ToString();
+                    products.Price = Convert.ToInt32(rdr["Price"]);
+                    products.Ingredients = rdr["Ingredients"].ToString();
+                    Data.productList.Add(products);
                 }
             }
         }

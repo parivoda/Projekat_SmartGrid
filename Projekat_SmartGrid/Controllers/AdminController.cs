@@ -73,5 +73,69 @@ namespace Projekat_SmartGrid.Controllers
                 return RedirectToAction("Verify");
             }
         }
+        public ActionResult AddProducts()
+        {
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult AddProductAction(string id,string name,string price,string ingredients)
+        {
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                bool valid = true;
+
+                if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(ingredients))
+                {
+                    ViewBag.emptyError = "You must fill all fields!";
+                    return View();
+                }
+
+                if (valid)
+                {
+                    
+                    Product product = new Product(Int32.Parse(id),name, Int32.Parse(price), ingredients);
+
+                    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjekatSmartGridConnectionString"].ConnectionString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("ProductDetail", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Name", name);
+                            cmd.Parameters.AddWithValue("@Price", Int32.Parse(price));
+                            cmd.Parameters.AddWithValue("@Ingredients", ingredients);
+                            cmd.Parameters.AddWithValue("@status", "insertProduct");
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    Data.productList.Add(product);
+                    return RedirectToAction("ProductAdded");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+        }
+        public ActionResult ProductAdded()
+        {
+            return View();
+        }
     }
 }

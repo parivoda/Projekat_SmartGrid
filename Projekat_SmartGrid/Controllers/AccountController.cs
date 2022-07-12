@@ -207,7 +207,6 @@ namespace Projekat_SmartGrid.Controllers
                 
                 Session["USER"] = Data.userList[thisUser.Email];
             }
-
             return RedirectToAction("Index", "Home");
         }
     }
