@@ -1,0 +1,33 @@
+﻿
+@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "AllOrders";
+    User currentUser = Session["USER"] as User;
+}
+
+<h2>All Orders</h2>
+
+<table>
+    <tr>
+        <th>User</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Address</th>
+        <th>Comment</th>
+        <th>Total Price</th>
+        <th>Active</th>
+    </tr>
+    @foreach (Order o in Data.orderList)
+    {
+        <tr>
+            <td>@o.User.Username</td>
+            <td>@o.Product</td>
+            <td>@o.Amount</td>
+            <td>@o.Address</td>
+            <td>@o.Comment</td>
+            <td>@o.Price</td>
+            <td>@o.Active</td>
+        </tr>
+    }
+
+</table>

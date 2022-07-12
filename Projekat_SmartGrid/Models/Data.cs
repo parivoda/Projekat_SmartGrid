@@ -9,5 +9,6 @@ namespace Projekat_SmartGrid.Models
     {
         public static Dictionary<string,User> userList = new Dictionary<string,User>();
         public static List<Product> productList = new List<Product>();
+        public static List<Order> orderList = new List<Order>();
     }
 }

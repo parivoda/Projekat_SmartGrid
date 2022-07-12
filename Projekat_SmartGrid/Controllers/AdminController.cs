@@ -135,7 +135,29 @@ namespace Projekat_SmartGrid.Controllers
         }
         public ActionResult ProductAdded()
         {
-            return View();
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult AllOrders()
+        {
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

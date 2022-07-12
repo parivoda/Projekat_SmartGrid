@@ -175,11 +175,15 @@
     <Content Include="Views\Admin\Verify.cshtml" />
     <Content Include="Views\Admin\AddProducts.cshtml" />
     <Content Include="Views\Admin\ProductAdded.cshtml" />
+    <Content Include="Views\User\NewOrder.cshtml" />
+    <Content Include="Views\User\ConfirmOrder.cshtml" />
+    <Content Include="Views\User\Ordered.cshtml" />
+    <Content Include="Views\User\PastOrders.cshtml" />
+    <Content Include="Views\Admin\AllOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Deliverer\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

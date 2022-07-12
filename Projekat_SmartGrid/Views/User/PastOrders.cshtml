@@ -1,0 +1,29 @@
+﻿@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "PastOrders";
+    User currentUser = Session["USER"] as User;
+}
+
+<h2>Past Orders</h2>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Comment</th>
+        <th>Total Price</th>
+    </tr>
+    @foreach (Order o in Data.orderList)
+    {
+        if (o.User.Username == currentUser.Username && o.Active == false)
+        {
+            <tr>
+                <td>@o.Product</td>
+                <td>@o.Amount</td>
+                <td>@o.Comment</td>
+                <td>@o.Price</td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,45 @@
+﻿
+@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "NewOrder";
+    User currentUser = Session["USER"] as User;
+}
+
+<div>
+    <h1>New Order</h1>
+</div>
+
+<div>
+    <form action="~/User/NewOrderAction" method="post">
+        @{
+            int id = Data.orderList.Count + 1;
+            <input type="hidden" name="id" value="@id" />
+        }
+        <p>Delivery fee is always 165 RSD!</p>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Ingredients</th>
+                <th>Amount(max 10)</th>
+                <th></th>
+            </tr>
+            @foreach (Product p in Data.productList)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Price</td>
+                    <td>@p.Ingredients</td>
+                    <td><input type="number" name="amount" min="1" max="10" /></td>
+                    <td>
+                        <input type="hidden" name="productName" value="@p.Name" />
+                        <input type="hidden" name="productPrice" value="@p.Price" />
+                        <input class="buttonTable" style="width:100%;" type="submit" value="Add Product" />
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <textarea name="commentText" style="width:95%; height:70px; color: #5294e2; resize: none;  font-size:20px;" placeholder="Type your comment here!"></textarea><br />
+    </form>
+</div>
