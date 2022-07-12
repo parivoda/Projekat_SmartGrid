@@ -1,0 +1,70 @@
+﻿@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Verify deliverer</h2>
+
+<div style="margin:auto; width:100%; padding-top:5px; padding-bottom:5px;">
+    @{
+    <table class="center">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Lastname</th>
+            <th>DateOfBirth</th>
+            <th>Address</th>
+            <th>Verify</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Data.userList.Values)
+        {
+            if (item.UserType == UserType.DELIVERER)
+            {
+                <tr>
+                    <td>@item.Username</td>
+                    <td>@item.Email</td>
+                    <td>@item.Name</td>
+                    <td>@item.Lastname</td>
+                    <td>@item.DateOfBirth</td>
+                    <td>@item.Address</td>
+                    @if (item.Blocked == false)
+                    {
+                        <td>
+                            Verified
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Unverified
+                        </td>
+                    }
+                    @if (item.Blocked == false)
+                    {
+                        <td>
+                            Already Approved
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <form action="~/Admin/VerifyDeliverer" method="post">
+                                <input type="hidden" name="username" value="@item.Username" />
+                                <input type="hidden" name="email" value="@item.Email" />
+                                <input type="hidden" name="name" value="@item.Name" />
+                                <input type="hidden" name="lastname" value="@item.Lastname" />
+                                <input type="hidden" name="password" value="@item.Password" />
+                                <input type="hidden" name="dateOfBirth" value="@item.DateOfBirth" />
+                                <input type="hidden" name="address" value="@item.Address" />
+                                <input type="hidden" name="userType" value="@item.UserType" />
+                                <button class="buttonTable" name="action" value="approve">Approve</button>
+                            </form>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+    }
+</div>
