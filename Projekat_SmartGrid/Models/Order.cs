@@ -8,7 +8,7 @@ namespace Projekat_SmartGrid.Models
     public class Order
     {
         public int Id { get; set; }
-        public User User { get; set; }
+        public string User { get; set; }
         public string Product { get; set; }
         public int Amount { get; set; }
         public string Address { get; set; }
@@ -20,7 +20,7 @@ namespace Projekat_SmartGrid.Models
         {
 
         }
-        public Order(int id,User user,string product,int amount,string address,string comment,int price,bool active)
+        public Order(int id,string user,string product,int amount,string address,string comment,int price,bool active)
         {
             Id = id;
             User = user;

@@ -17,6 +17,7 @@ namespace Projekat_SmartGrid.Controllers
         {
             return View();
         }
+        [HttpGet]
         public ActionResult NewOrder()
         {
             User currentUser = (User)Session["USER"];
@@ -30,6 +31,7 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
+        [HttpPost]
         public ActionResult NewOrderAction(string id,string productName,string productPrice,string amount,string commentText)
         {
             User currentUser = (User)Session["USER"];
@@ -42,7 +44,7 @@ namespace Projekat_SmartGrid.Controllers
             {
                 int Fee = 165;
                 int totalPrice = Int32.Parse(amount) * Int32.Parse(productPrice) + Fee;
-                Order order = new Order(Int32.Parse(id), currentUser, productName, Int32.Parse(amount), currentUser.Address, commentText, totalPrice, true);
+                Order order = new Order(Int32.Parse(id), currentUser.Username, productName, Int32.Parse(amount), currentUser.Address, commentText, totalPrice, true);
                 
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjekatSmartGridConnectionString"].ConnectionString))
@@ -67,6 +69,7 @@ namespace Projekat_SmartGrid.Controllers
                 return RedirectToAction("Ordered");
             }
         }
+        [HttpGet]
         public ActionResult Ordered()
         {
             User currentUser = (User)Session["USER"];
@@ -80,6 +83,7 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
+        [HttpGet]
         public ActionResult PastOrders()
         {
             User currentUser = (User)Session["USER"];

@@ -21,27 +21,44 @@
     {
         if (o.Active == true)
         {
-        <tr>
-            <td>@o.User.Username</td>
-            <td>@o.Product</td>
-            <td>@o.Amount</td>
-            <td>@o.Address</td>
-            <td>@o.Comment</td>
-            <td>@o.Price</td>
-            <td>
-                <form action="~/Deliverer/AcceptOrder" method="post">
-                    <input type="hidden" name="id" value="@o.Id" />
-                    <input type="hidden" name="username" value="@o.User.Username" />
-                    <input type="hidden" name="product" value="@o.Product" />
-                    <input type="hidden" name="amount" value="@o.Amount" />
-                    <input type="hidden" name="address" value="@o.Address" />
-                    <input type="hidden" name="comment" value="@o.Comment" />
-                    <input type="hidden" name="price" value="@o.Price" />
-                    <input class="buttonTable" style="width:100%;" type="submit" value="Accept this order" />
-                </form>
-            </td>
+            if (Data.acceptedOrder.Values.Where(x => x.User == o.User).Count() != 0)
+            {
+                <tr>
+                    <td>@o.User</td>
+                    <td>@o.Product</td>
+                    <td>@o.Amount</td>
+                    <td>@o.Address</td>
+                    <td>@o.Comment</td>
+                    <td>@o.Price</td>
+                    <td>
+                        Already accepted
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@o.User</td>
+                    <td>@o.Product</td>
+                    <td>@o.Amount</td>
+                    <td>@o.Address</td>
+                    <td>@o.Comment</td>
+                    <td>@o.Price</td>
+                    <td>
+                        <form action="~/Deliverer/AcceptOrder" method="post">
+                            <input type="hidden" name="id" value="@o.Id" />
+                            <input type="hidden" name="username" value="@o.User" />
+                            <input type="hidden" name="product" value="@o.Product" />
+                            <input type="hidden" name="amount" value="@o.Amount" />
+                            <input type="hidden" name="address" value="@o.Address" />
+                            <input type="hidden" name="comment" value="@o.Comment" />
+                            <input type="hidden" name="price" value="@o.Price" />
+                            <input class="buttonTable" style="width:100%;" type="submit" value="Accept this order" />
+                        </form>
+                    </td>
+                </tr>
+            }
 
-        </tr>
         }
     }
 

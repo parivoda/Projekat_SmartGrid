@@ -17,7 +17,7 @@ namespace Projekat_SmartGrid.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult Verify()
         {
             User currentUser = (User)Session["USER"];
@@ -31,7 +31,7 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
-
+        [HttpPost]
         public ActionResult VerifyDeliverer(string username, string name, string lastname, string password, string email, string address, string dateOfBirth, string userType)
         {
             User currentUser = (User)Session["USER"];
@@ -73,6 +73,7 @@ namespace Projekat_SmartGrid.Controllers
                 return RedirectToAction("Verify");
             }
         }
+        [HttpGet]
         public ActionResult AddProducts()
         {
             User currentUser = (User)Session["USER"];
@@ -133,6 +134,7 @@ namespace Projekat_SmartGrid.Controllers
                 }
             }
         }
+        [HttpGet]
         public ActionResult ProductAdded()
         {
             User currentUser = (User)Session["USER"];
@@ -146,6 +148,7 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
+        [HttpGet]
         public ActionResult AllOrders()
         {
             User currentUser = (User)Session["USER"];

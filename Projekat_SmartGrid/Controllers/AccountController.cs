@@ -96,6 +96,11 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
+        public ActionResult RegisterWithSocialMedia()
+        {
+
+            return View();
+        }
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
@@ -143,11 +148,13 @@ namespace Projekat_SmartGrid.Controllers
             }
             
         }
+        [HttpGet]
         public ActionResult LogOut()
         {
             Session.Clear();
             return RedirectToAction("Login");
         }
+        [HttpGet]
         public ActionResult ProfileView()
         {
             if (Session["USER"] == null)
@@ -155,6 +162,7 @@ namespace Projekat_SmartGrid.Controllers
             else
                 return View();
         }
+        [HttpPost]
         public ActionResult EditProfile(string username, string name, string lastname,string password, string email, string address, string dateOfBirth,string userType)
         {
             User thisUser = (User)Session["User"];

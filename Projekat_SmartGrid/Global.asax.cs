@@ -68,19 +68,19 @@ namespace Projekat_SmartGrid
                 {
                     var orders = new Order();
 
-                    string username = rdr["Username"].ToString();
-                    User uu = null;
-                    foreach (User u in Data.userList.Values)
-                    {
-                        if(u.Username == username)
-                        {
-                            uu = (User)Data.userList[u.Email];
+                    //string username = rdr["Username"].ToString();
+                    //User uu = null;
+                    //foreach (User u in Data.userList.Values)
+                    //{
+                    //    if(u.Username == username)
+                    //    {
+                    //        uu = (User)Data.userList[u.Email];
                             
-                        }
-                    }
+                    //    }
+                    //}
 
                     orders.Id = Convert.ToInt32(rdr["Id"]);
-                    orders.User = uu;
+                    orders.User = rdr["Username"].ToString();
                     orders.Product = rdr["ProductName"].ToString();
                     orders.Amount = Convert.ToInt32(rdr["Amount"]);
                     orders.Address = rdr["Address"].ToString();
@@ -88,6 +88,7 @@ namespace Projekat_SmartGrid
                     orders.Price = Convert.ToInt32(rdr["Price"]);
                     orders.Active = Convert.ToBoolean(rdr["Active"]);
                     Data.orderList.Add(orders);
+                    
                 }
             }
         }

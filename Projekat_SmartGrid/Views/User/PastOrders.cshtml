@@ -15,7 +15,7 @@
     </tr>
     @foreach (Order o in Data.orderList)
     {
-        if (o.User.Username == currentUser.Username && o.Active == false)
+        if (o.User == currentUser.Username && o.Active == false)
         {
             <tr>
                 <td>@o.Product</td>
