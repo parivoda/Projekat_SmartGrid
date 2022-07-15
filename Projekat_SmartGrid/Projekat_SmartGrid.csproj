@@ -144,6 +144,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\banner.png" />
+    <Content Include="Images\nigiri.png" />
+    <Content Include="Images\nigiri2.png" />
+    <Content Include="Images\nigiri3.png" />
+    <Content Include="Images\sushi1.png" />
+    <Content Include="Images\sushi2.png" />
+    <Content Include="Images\sushi3.png" />
+    <Content Include="Images\sushi4.png" />
+    <Content Include="Images\sushi5.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -180,10 +189,11 @@
     <Content Include="Views\User\Ordered.cshtml" />
     <Content Include="Views\User\PastOrders.cshtml" />
     <Content Include="Views\Admin\AllOrders.cshtml" />
+    <Content Include="Views\Deliverer\NewOrders.cshtml" />
+    <Content Include="Views\Deliverer\OrderAccepted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Deliverer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -21,6 +21,7 @@ namespace Projekat_SmartGrid.Models
         public bool Blocked { get; set; }
 
         public List<Order> CurrentOrder { get; set; }
+        public List<Order> AcceptedOrders { get; set; }
 
         public User()
         {
@@ -42,6 +43,7 @@ namespace Projekat_SmartGrid.Models
             Blocked = blocked;
 
             CurrentOrder = new List<Order>();
+            AcceptedOrders = new List<Order>();
         }
         public User(int id, string username, string email, string password, string name, string lastname, string dateOfBirth, string address, UserType userType, bool blocked)
         {
@@ -57,6 +59,7 @@ namespace Projekat_SmartGrid.Models
             Blocked = blocked;
 
             CurrentOrder = new List<Order>();
+            AcceptedOrders = new List<Order>();
         }
         public User(string username, string email, string password, string name, string lastname, string dateOfBirth, string address, UserType userType, bool blocked)
         {
@@ -71,6 +74,7 @@ namespace Projekat_SmartGrid.Models
             Blocked = blocked;
 
             CurrentOrder = new List<Order>();
+            AcceptedOrders = new List<Order>();
         }
     }
 }

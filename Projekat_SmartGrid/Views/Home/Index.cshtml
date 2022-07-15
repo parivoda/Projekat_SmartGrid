@@ -2,22 +2,31 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>WELCOME !</h1>
+<h1>WELCOME TO ONE PIECE</h1>
+<h2>Japanese restaurant</h2>
 
-<table>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Status</th>
-    </tr>
-
-    @foreach (var item in Data.userList.Values)
-    {
-        <tr>
-            <td>@item.Username</td>
-            <td>@item.Email</td>
-            <td>@item.UserType</td>
-        </tr>
-    }
-        
-    </table>
+<div class="container">
+    <ul class="image-gallery">
+        <li>
+            <img src="~/Images/nigiri.png" alt="nigiri" />
+        </li>
+        <li>
+            <img src="~/Images/nigiri2.png" alt="nigiri2" />
+        </li>
+        <li>
+            <img src="~/Images/sushi1.png" alt="sushi1" />
+        </li>
+        <li>
+            <img src="~/Images/sushi2.png" alt="sushi2" />
+        </li>
+        <li>
+            <img src="~/Images/sushi3.png" alt="sushi3" />
+        </li>
+        <li>
+            <img src="~/Images/sushi4.png" alt="sushi4" />
+        </li>
+        <li>
+            <img src="~/Images/sushi5.png" alt="sushi5" />
+        </li>
+    </ul>
+</div>
