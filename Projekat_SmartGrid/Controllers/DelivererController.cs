@@ -91,5 +91,34 @@ namespace Projekat_SmartGrid.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult MyOrders()
+        {
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.DELIVERER)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult CurrentOrder()
+        {
+            User currentUser = (User)Session["USER"];
+
+            if (currentUser == null || currentUser.UserType != UserType.DELIVERER)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }

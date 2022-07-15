@@ -191,6 +191,8 @@
     <Content Include="Views\Admin\AllOrders.cshtml" />
     <Content Include="Views\Deliverer\NewOrders.cshtml" />
     <Content Include="Views\Deliverer\OrderAccepted.cshtml" />
+    <Content Include="Views\Deliverer\MyOrders.cshtml" />
+    <Content Include="Views\Deliverer\CurrentOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

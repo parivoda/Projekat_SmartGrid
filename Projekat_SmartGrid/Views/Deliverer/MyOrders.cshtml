@@ -1,0 +1,35 @@
+﻿
+@using Projekat_SmartGrid.Models;
+@{
+    ViewBag.Title = "MyOrders";
+    User currentUser = Session["USER"] as User;
+}
+
+<h2>My Orders</h2>
+
+<table class="center">
+
+    <tr>
+        <th>User</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Address</th>
+        <th>Comment</th>
+        <th>Total Price</th>
+    </tr>
+    @foreach (Order o in Data.acceptedOrder.Values)
+    {
+        if (Data.acceptedOrder.ContainsKey(currentUser.Username) && o.Active == false)
+        {
+            <tr>
+                <td>@o.User</td>
+                <td>@o.Product</td>
+                <td>@o.Amount</td>
+                <td>@o.Address</td>
+                <td>@o.Comment</td>
+                <td>@o.Price</td>
+            </tr>
+        }
+    }
+
+</table>
